@@ -1,16 +1,13 @@
-import React, {createRef, FormEvent, RefObject} from 'react';
+import React, { createRef } from 'react';
 
-export class MainControls extends React.Component<{
-      addNewTodo: (text: string) => void,
-      markAllAsReady: () => void
-    }> {
-  _inputRef: RefObject<HTMLInputElement> = createRef();
+export class MainControls extends React.Component {
+  _inputRef = createRef();
 
   render() {
-    const onSubmit = (e: FormEvent) => {
+    const onSubmit = e => {
       e.preventDefault();
-      const input: HTMLInputElement = this._inputRef.current!;
-      const currentNewTodoText: string = input.value.trim();
+      const input = this._inputRef.current;
+      const currentNewTodoText = input.value.trim();
       if (currentNewTodoText) {
         input.value = '';
         this.props.addNewTodo(currentNewTodoText);
@@ -35,7 +32,7 @@ export class MainControls extends React.Component<{
             className="main-controls__create-new-input"
             placeholder="What needs to be done?"
             aria-label="Add new item"
-            autoFocus={true}
+            autoFocus="autofocus"
           />
         </form>
       </section>
